@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.amadoucamara.payment.adapters.ServicesAdapter;
 import com.example.amadoucamara.payment.models.Services;
@@ -24,7 +26,7 @@ public class ServicesActivity extends AppCompatActivity {
 
         rvServices = (RecyclerView) findViewById(R.id.rvServices);
         rvServices.setHasFixedSize(true);
-        final GridLayoutManager layout = new GridLayoutManager(ServicesActivity.this, 1);
+        final GridLayoutManager layout = new GridLayoutManager(ServicesActivity.this, 2);
 
         // Unlike ListView, you have to explicitly give a LayoutManager to the RecyclerView to position items on the screen.
         // There are three LayoutManager provided at the moment: GridLayoutManager, StaggeredGridLayoutManager and LinearLayoutManager.
@@ -39,5 +41,9 @@ public class ServicesActivity extends AppCompatActivity {
         // Bind adapter to list
         rvServices.setAdapter(adapter);
 
+    }
+
+    public void transferToBank(View view) {
+        Toast.makeText(this, "TRANSFER", Toast.LENGTH_SHORT).show();
     }
 }

@@ -283,6 +283,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         this.startActivity(intent);
     }
 
+    public void toRegister(View view) {
+    }
+
 
     private interface ProfileQuery {
         String[] PROJECTION = {

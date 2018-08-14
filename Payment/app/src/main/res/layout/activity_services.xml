@@ -7,9 +7,42 @@
     android:id="@+id/rlMainActivity"
     tools:context=".ServicesActivity">
 
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome, Amadou! \n Your balance is:"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/tvBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="$0.00"
+        android:textSize="60dp"
+        android:padding="5dp"
+        android:layout_below="@id/tvWelcome"/>
+
+    <TextView
+        android:id="@+id/tvTransfer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_blue_dark"
+        android:text="Transfer to bank >"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tvBalance"
+        android:clickable="true"
+        android:padding="5dp"
+        android:onClick="transferToBank"/>
+
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rvServices"/>
+        android:id="@+id/rvServices"
+        android:layout_below="@id/tvTransfer"/>
 
 </RelativeLayout>
