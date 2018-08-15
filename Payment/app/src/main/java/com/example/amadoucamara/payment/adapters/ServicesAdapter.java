@@ -2,6 +2,7 @@ package com.example.amadoucamara.payment.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +69,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.VH> {
             itemView.setClickable(true);
             rootView = itemView;
             ivServiceImage = itemView.findViewById(R.id.ivServiceImage);
+            ivServiceImage.setColorFilter(ContextCompat.getColor(context, R.color.colorPrimaryDark));
+
             tvService = itemView.findViewById(R.id.tvServiceName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
