@@ -67,8 +67,8 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.VH> {
             super(itemView);
             itemView.setClickable(true);
             rootView = itemView;
-            ivServiceImage = (ImageView) itemView.findViewById(R.id.ivServiceImage);
-            tvService = (TextView) itemView.findViewById(R.id.tvServiceName);
+            ivServiceImage = itemView.findViewById(R.id.ivServiceImage);
+            tvService = itemView.findViewById(R.id.tvServiceName);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -28,6 +28,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -66,10 +70,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -81,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,11 +283,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void toMainScreen() {
+        database.child("users").child("first_name").setValue("Amadou");
+        database.child("users").child("last_name").setValue("Camara");
+        database.child("users").child("date_of_birth").setValue("01814/1998");
+        database.child("users").child("email").setValue("acamara1498@gmail.com");
+        database.child("users").child("username").setValue("amadou");
+        database.child("users").child("balance").setValue(250.00);
         Intent intent = new Intent(this, ServicesActivity.class);
         this.startActivity(intent);
     }
 
     public void toRegister(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        this.startActivity(intent);
     }
 
 

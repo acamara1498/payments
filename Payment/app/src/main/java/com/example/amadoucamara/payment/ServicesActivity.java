@@ -24,7 +24,7 @@ public class ServicesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
 
-        rvServices = (RecyclerView) findViewById(R.id.rvServices);
+        rvServices = findViewById(R.id.rvServices);
         rvServices.setHasFixedSize(true);
         final GridLayoutManager layout = new GridLayoutManager(ServicesActivity.this, 2);
 
