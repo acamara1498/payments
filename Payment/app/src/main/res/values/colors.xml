@@ -6,4 +6,6 @@
     <color name="loginbtn">#ee000000</color>
     <color name="backgroundColor">#D5CAD6</color>
     <color name="softwhite">#FFFFFA</color>
+    <color name="alertRed">#ff0000</color>
+    <color name="hintGray">#a8a8a8</color>
 </resources>
