@@ -9,7 +9,7 @@ public class Services {
     private String name;
     private int image;
 
-    public Services(String name, int image) {
+    private Services(String name, int image) {
         this.name = name;
         this.image = image;
     }

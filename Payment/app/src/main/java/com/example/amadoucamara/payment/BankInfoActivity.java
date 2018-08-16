@@ -10,8 +10,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.amadoucamara.payment.models.BankInfo;
+import com.example.amadoucamara.payment.models.CardInfo;
+
 import java.util.Arrays;
 import java.util.List;
+
+import static com.example.amadoucamara.payment.models.User.getCurrentUser;
 
 public class BankInfoActivity extends AppCompatActivity {
 
@@ -20,6 +25,13 @@ public class BankInfoActivity extends AppCompatActivity {
 
     private EditText etAccount;
     private EditText etConfirm;
+    private EditText etRouting;
+
+    private EditText etCard;
+    private EditText etExpiration;
+    private EditText etSecurity;
+    private EditText etZipCode;
+
 
     private List <EditText> accountFields;
     private List <EditText> cardFields;
@@ -33,16 +45,16 @@ public class BankInfoActivity extends AppCompatActivity {
         llAddBank = (LinearLayout) findViewById(R.id.llAddBank);
         llAddCard = (LinearLayout) findViewById(R.id.llAddCard);
 
-        EditText etRouting = (EditText) findViewById(R.id.etRouting);
+        etRouting = (EditText) findViewById(R.id.etRouting);
         etAccount = (EditText) findViewById(R.id.etAccount);
         etConfirm = (EditText) findViewById(R.id.etConfirm);
         accountFields = Arrays.asList(etRouting, etAccount, etConfirm);
 
 
-        EditText etCard = (EditText) findViewById(R.id.etCard);
-        EditText etExpiration = (EditText) findViewById(R.id.etExpiration);
-        EditText etSecurity = (EditText) findViewById(R.id.etSecurity);
-        EditText etZipCode = (EditText) findViewById(R.id.etZipCode);
+        etCard = (EditText) findViewById(R.id.etCard);
+        etExpiration = (EditText) findViewById(R.id.etExpiration);
+        etSecurity = (EditText) findViewById(R.id.etSecurity);
+        etZipCode = (EditText) findViewById(R.id.etZipCode);
         cardFields = Arrays.asList(etCard, etExpiration, etSecurity, etZipCode);
     }
 
@@ -100,6 +112,8 @@ public class BankInfoActivity extends AppCompatActivity {
         }
 
         if (accountNumbersMatch && allComplete) {
+            BankInfo bankInfo = new BankInfo(etRouting.getText().toString(), etAccount.getText().toString());
+            getCurrentUser().setBankInfo(bankInfo);
             Intent intent = new Intent(this, ServicesActivity.class);
             this.startActivity(intent);
         }
@@ -118,6 +132,9 @@ public class BankInfoActivity extends AppCompatActivity {
         }
 
         if (allComplete) {
+            CardInfo cardInfo = new CardInfo(etCard.getText().toString(), etExpiration.getText().toString(),
+                    etSecurity.getText().toString(), etZipCode.getText().toString());
+            getCurrentUser().setCardInfo(cardInfo);
             Intent intent = new Intent(this, ServicesActivity.class);
             this.startActivity(intent);
         }

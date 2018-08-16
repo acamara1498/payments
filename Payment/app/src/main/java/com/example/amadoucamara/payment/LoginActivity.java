@@ -27,7 +27,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -59,6 +65,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
+
+    private FirebaseAuth auth;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -97,6 +105,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        auth = FirebaseAuth.getInstance();
     }
 
     private void populateAutoComplete() {
@@ -285,14 +295,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void toMainScreen() {
-        database.child("users").child("first_name").setValue("Amadou");
-        database.child("users").child("last_name").setValue("Camara");
-        database.child("users").child("date_of_birth").setValue("01814/1998");
-        database.child("users").child("email").setValue("acamara1498@gmail.com");
-        database.child("users").child("username").setValue("amadou");
-        database.child("users").child("balance").setValue(250.00);
-        Intent intent = new Intent(this, ServicesActivity.class);
-        this.startActivity(intent);
+        auth.signInWithEmailAndPassword(mEmailView.getText().toString(), mPasswordView.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = auth.getCurrentUser();
+                            Intent intent = new Intent(LoginActivity.this, ServicesActivity.class);
+                            LoginActivity.this.startActivity(intent);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
     }
 
     public void toRegister(View view) {

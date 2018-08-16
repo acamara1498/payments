@@ -13,7 +13,8 @@
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome, Amadou! \n Your balance is:"
+        android:text="Welcome, Amadou! \nYour balance is:"
+        android:gravity="center"
         android:padding="5dp"
         android:textColor="@color/colorPrimaryDark"
         android:layout_centerHorizontal="true"/>

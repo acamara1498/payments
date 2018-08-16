@@ -5,12 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.amadoucamara.payment.adapters.ServicesAdapter;
 import com.example.amadoucamara.payment.models.Services;
 
 import java.util.List;
+
+import static com.example.amadoucamara.payment.models.User.getCurrentUser;
 
 public class ServicesActivity extends AppCompatActivity {
 
@@ -23,6 +26,10 @@ public class ServicesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_services);
+
+        TextView tvWelcome = (TextView) findViewById(R.id.tvWelcome);
+        tvWelcome.setText(String.format("Welcome, %s! \n Your balance is:",getCurrentUser().getFirstName()));
+
 
         rvServices = findViewById(R.id.rvServices);
         rvServices.setHasFixedSize(true);
